@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "backend",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/server",
+            "runtimeExecutable": "nodemon",
+            "program": "src/app.ts",
+            "restart": true,
+            "outputCapture": "std",
+            "sourceMaps": true,
+            "env": {
+                "NODE_ENV": "developement"
+            }
+        }
+    ]
+}
