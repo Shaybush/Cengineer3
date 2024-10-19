@@ -16,15 +16,16 @@
             }
         },
         {
+            "name": "Debug React",
             "type": "chrome",
             "request": "launch",
-            "cwd": "${workspaceFolder}/client",
-            "name": "Debug React",
-            "url": "http://localhost:3000",
-            "smartStep": true,
-            "outputCapture": "std", // This is to be able to also capture logger outputs
             "sourceMaps": true,
-            "env": { "ENV_FILE": "${workspaceFolder}/envs/.env.development" }
-          },
+            "smartStep": true,
+            "url": "http://localhost:5173",
+            "webRoot": "${workspaceFolder}/client",
+            "env": {
+                "NODE_ENV": "developement"
+            }
+          }
     ]
 }
