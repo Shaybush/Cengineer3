@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "backend",
+            "name": "Debug express",
             "type": "node",
             "request": "launch",
             "cwd": "${workspaceFolder}/server",
@@ -14,6 +14,17 @@
             "env": {
                 "NODE_ENV": "developement"
             }
-        }
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/client",
+            "name": "Debug React",
+            "url": "http://localhost:3000",
+            "smartStep": true,
+            "outputCapture": "std", // This is to be able to also capture logger outputs
+            "sourceMaps": true,
+            "env": { "ENV_FILE": "${workspaceFolder}/envs/.env.development" }
+          },
     ]
 }
