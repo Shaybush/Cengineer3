@@ -1,17 +1,24 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, Types } from 'mongoose';
 
-const userSchema = new Schema(
-    {
-        email: {
-            type: String,
-            unique: true,
-            required: true,
-        },
-        rooms_ids: [Schema.Types.ObjectId],
-    },
-    {
-        timestamps: true,
-    }
+interface IUserModel {
+	email: string;
+	rooms_ids: Types.ObjectId[];
+	created_at: Date;
+	updated_at: Date;
+}
+
+const userSchema = new Schema<IUserModel>(
+	{
+		email: {
+			type: String,
+			unique: true,
+			required: true,
+		},
+		rooms_ids: [Schema.Types.ObjectId],
+	},
+	{
+		timestamps: true,
+	}
 );
 
-export default mongoose.model("User", userSchema);
+export default mongoose.model<IUserModel>('User', userSchema);
