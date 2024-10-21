@@ -4,6 +4,7 @@ import path from 'path';
 import cors from 'cors';
 import { AppConfig } from './config/app.config';
 import { AppError } from './utils/app-error.util';
+import "./db/mongo-connect";
 
 const app = express();
 const server = createServer(app);
