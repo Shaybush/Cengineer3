@@ -1,13 +1,15 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  server: {
+    host: true, // This makes the server listen on all network interfaces
+    port: 5173,
+    open: true
+  },
   build: {
     sourcemap: true // Enable source maps
   },
-  server: {
-    open: true // Automatically open the browser when the server starts
-  }
 })
