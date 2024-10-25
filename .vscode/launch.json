@@ -12,7 +12,7 @@
             "outputCapture": "std",
             "sourceMaps": true,
             "env": {
-                "NODE_ENV": "developement"
+                "NODE_ENV": "development"
             }
         },
         {
