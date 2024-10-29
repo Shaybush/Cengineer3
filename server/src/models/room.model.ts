@@ -2,6 +2,9 @@ import mongoose, { Schema, Types } from 'mongoose';
 
 interface IRoomModel {
 	name: string;
+	image: string;
+	is_group: boolean;
+	last_message: Types.ObjectId;
 	users: Types.ObjectId[];
 	created_at: Date;
 	updated_at: Date;
@@ -15,6 +18,15 @@ const roomSchema = new Schema<IRoomModel>(
 			required: true,
 		},
 		users: [Schema.Types.ObjectId],
+		image: String,
+		is_group: {
+			type: Boolean,
+			default: false,
+		},
+		last_message: {
+			type: Schema.Types.ObjectId,
+			ref: 'Message',
+		},
 	},
 	{
 		timestamps: true,
