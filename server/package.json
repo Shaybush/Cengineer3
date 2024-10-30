@@ -5,6 +5,8 @@
     "scripts": {
         "dev": "nodemon src/app.ts",
         "start": "node dist/app.js",
+        "check": "prettier . --check",
+        "fix": "prettier . --write",
         "build": "tsc"
     },
     "author": "",
@@ -33,4 +35,3 @@
         "express": "^4.19.2"
     }
 }
-
