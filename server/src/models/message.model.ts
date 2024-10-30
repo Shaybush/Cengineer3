@@ -7,7 +7,7 @@ interface IMessageModel {
 	read_by: Types.ObjectId[];
 	attachments?: {
 		url: string;
-		type: string;
+		type: 'image' | 'video' | 'file' | 'audio';
 	};
 	reactions?: {
 		user: Types.ObjectId;
@@ -40,6 +40,7 @@ const messageSchema = new Schema<IMessageModel>(
 		attachments: [
 			{
 				url: String, // URL of an attachment (image, video, etc.)
+				enum: ['image', 'video', 'file', 'audio'],
 				type: String, // Type of attachment: image, video, file, etc.
 			},
 		],
