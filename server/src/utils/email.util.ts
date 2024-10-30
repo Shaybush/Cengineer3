@@ -1,8 +1,6 @@
 import transporter from "../connections/email.connect";
-import {config} from 'dotenv'
 import {AppError} from "../utils/app-error.util";
-
-config({path:`.env.${process.env.NODE_ENV}`})
+import { EMAIL_USER } from "./environment-variables";
 
 interface IEmailOptions {
     to: string;
@@ -10,12 +8,11 @@ interface IEmailOptions {
     html?: string;
 }
 
-
 const sendEmail = async (options: IEmailOptions): Promise<void> => {
     const { to, text, html } = options;
     try {
         const result = await transporter.sendMail({
-            from: process.env.EMAIL_USER,
+            from: EMAIL_USER,
             to,
             subject: "Cengineer3",
             text,
@@ -23,9 +20,7 @@ const sendEmail = async (options: IEmailOptions): Promise<void> => {
         });
         console.log(`Email sent: ${result.response}`);
     } catch (error) {
-        console.log(error);
-        
-        // throw new AppError("Email sending failed", 500,error.message, true);
+        throw new AppError("Email sending failed", 500,error.message, true);
     }
 };
 

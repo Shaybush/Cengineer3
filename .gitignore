@@ -1,9 +1,7 @@
 */node_modules
 */pnpm-lock.yaml
-*/env/.env-test
 
-*/.env-dev
-*/.env-prod
+*/env
 */dist
 */package-lock.json
 
