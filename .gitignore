@@ -2,7 +2,9 @@
 */pnpm-lock.yaml
 */env/.env-test
 
-*/.env-dev
+*/.env
+
+*/env
 */.env-prod
 */dist
 */package-lock.json
