@@ -15,21 +15,22 @@ const userSchema = new mongoose.Schema<IUserModel>(
 		email: {
 			type: String,
 			required: true,
-			unique: true, // Username for identifying the user
+			unique: true,
+			trim: true,
 		},
 		image: String,
 		status: {
 			type: String,
-			enum: ['online', 'offline', 'busy', 'away'], // User status for presence indication
+			enum: ['online', 'offline', 'busy', 'away'],
 			default: 'offline',
 		},
 		last_seen: {
-			type: Date, // Timestamp of the last time the user was online
+			type: Date,
 		},
 		contact_ids: [
 			{
-				type: mongoose.Schema.Types.ObjectId,
-				ref: 'User', // List of the user's contacts/friends
+				type: Schema.Types.ObjectId,
+				ref: 'User',
 			},
 		],
 	},

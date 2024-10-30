@@ -16,8 +16,14 @@ const roomSchema = new Schema<IRoomModel>(
 			type: String,
 			unique: true,
 			required: true,
+			trim: true,
 		},
-		users: [Schema.Types.ObjectId],
+		users: [
+			{
+				type: Schema.Types.ObjectId,
+				ref: 'User',
+			},
+		],
 		image: String,
 		is_group: {
 			type: Boolean,

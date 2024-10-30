@@ -20,34 +20,35 @@ interface IMessageModel {
 const messageSchema = new Schema<IMessageModel>(
 	{
 		user_id: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'User', // The user whom sent the message
+			type: Schema.Types.ObjectId,
+			ref: 'User',
 			required: true,
 		},
 		text: {
 			type: String,
-			required: true, // The message content
+			required: true,
+			trim: true,
 		},
 		room_id: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref: 'Room', // The room where the message was sent
+			type: Schema.Types.ObjectId,
+			ref: 'Room',
 			required: true,
 		},
 		read_by: {
-			type: [mongoose.Schema.Types.ObjectId],
-			ref: 'User', // The users who have read the message
+			type: [Schema.Types.ObjectId],
+			ref: 'User',
 		},
 		attachments: [
 			{
-				url: String, // URL of an attachment (image, video, etc.)
+				url: String,
 				enum: ['image', 'video', 'file', 'audio'],
-				type: String, // Type of attachment: image, video, file, etc.
+				type: String,
 			},
 		],
 		reactions: [
 			{
 				user: {
-					type: mongoose.Schema.Types.ObjectId,
+					type: Schema.Types.ObjectId,
 					ref: 'User',
 				},
 				reactionType: {
