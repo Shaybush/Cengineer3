@@ -1,4 +1,4 @@
-trailingComma: es6 # Trailing commas where valid in ES6 (Objects, arrays, etc.)
+trailingComma: es5 # Trailing commas where valid in ES6 (Objects, arrays, etc.)
 tabWidth: 2 # indent tab is 2 spaces worth
 useTabs: true
 semi: true # prints semi-colons at the ends of statements
