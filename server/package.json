@@ -7,7 +7,7 @@
     "start": "node dist/app.js",
     "build": "tsc",
     "check": "prettier . --check",
-    "fix": "prettier . --write",
+    "fix": "prettier . --write"
   },
   "author": "",
   "license": "ISC",
