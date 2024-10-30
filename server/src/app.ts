@@ -1,4 +1,5 @@
 import express, { NextFunction, Request, Response } from 'express';
+import './utils/environment-variables';
 import { createServer } from 'node:http';
 import path from 'path';
 import cors from 'cors';
