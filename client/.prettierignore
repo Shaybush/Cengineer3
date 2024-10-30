@@ -1,0 +1,8 @@
+pnpm-lock.yaml
+tsconfig.json
+package.json
+/dist
+.prettierrc.yaml
+Dockerfile
+env
+.prettierignore
