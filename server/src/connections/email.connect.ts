@@ -9,6 +9,7 @@ const transporter: Transporter = nodemailer.createTransport({
         user: EMAIL_USER,
         pass: EMAIL_PASS
     },
+    //Allows connections with invalid, self-signed, or unverified certificates
     tls: { rejectUnauthorized: false }
 });
 

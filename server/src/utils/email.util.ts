@@ -5,16 +5,17 @@ import { EMAIL_USER } from "./environment-variables";
 interface IEmailOptions {
     to: string;
     text: string;
-    html?: string;
+    html: string;
+    subject: string;
 }
 
 const sendEmail = async (options: IEmailOptions): Promise<void> => {
-    const { to, text, html } = options;
+    const { to, text, html, subject } = options;
     try {
         const result = await transporter.sendMail({
             from: EMAIL_USER,
             to,
-            subject: "Cengineer3",
+            subject,
             text,
             html,
         });
