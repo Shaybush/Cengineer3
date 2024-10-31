@@ -6,6 +6,7 @@ import cors from 'cors';
 import { AppConfig } from './config/app.config';
 import { AppError } from './utils/app-error.util';
 import './db/mongo-connect';
+import { RedisDAL } from './connections/redis-dal';
 
 const app = express();
 const server = createServer(app);
@@ -19,8 +20,26 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 	next();
 });
 
-app.get(AppConfig.apiUrl.health, (req, res) => {
+// TODO - remove after Netanel review
+app.get('/redis', async (req: Request, res: Response, next: NextFunction) => {
+	res.send('redis');
+	const redis = new RedisDAL();
+	redis.setKeyWithValue({ key: 'example', value: 'test', expirationTime: 60 });
+	redis.setKeyWithCallback({
+		key: 'data',
+		callbackFn: async () => {
+			console.log('value');
+		},
+		expirationTime: 60,
+	});
+});
+
+app.get(AppConfig.apiUrl.health, async (req, res) => {
 	res.send('OK');
+	const redis = new RedisDAL();
+	redis.getValueByKey('example').then((value) => {
+		console.log(value);
+	});
 });
 
 app.use((err: AppError, req: Request, res: Response, _next: NextFunction) => {
