@@ -3,7 +3,8 @@
 */env/.env-test
 
 */.env
-*/.env-dev
+
+*/env
 */.env-prod
 */dist
 */package-lock.json
