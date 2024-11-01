@@ -1,9 +1,9 @@
 import { createClient, RedisClientType } from 'redis';
 import { REDIS_URL } from '../utils/environment-variables';
 
-interface IRedisCacheProps {
+interface IRedisCacheProps<T> {
 	key: string;
-	callbackFn: () => Promise<void>;
+	callbackFn: () => Promise<T>;
 	expirationTime: number;
 }
 
@@ -22,12 +22,13 @@ export class RedisDAL {
 				this.redisClient = createClient({ url: REDIS_URL });
 				this.redisClient.connect().then(() => console.log('connect to Redis'));
 			} catch (error: any) {
+				// TODO - replace once AppError ready
 				throw new Error('error here');
 			}
 		}
 	}
 
-	getSetValue({ key, callbackFn, expirationTime }: IRedisCacheProps): Promise<void | string> {
+	getSetValue<T>({ key, callbackFn, expirationTime }: IRedisCacheProps<T>): Promise<void | T> {
 		return new Promise((resolve, reject) => {
 			this.redisClient
 				.GET(key)
@@ -50,9 +51,9 @@ export class RedisDAL {
 		});
 	}
 
-	async setKeyWithCallback({ key, callbackFn, expirationTime }: IRedisCacheProps): Promise<void> {
-		return new Promise((resolve, reject) => {
-			const value = callbackFn();
+	async setKeyWithCallback<T>({ key, callbackFn, expirationTime }: IRedisCacheProps<T>): Promise<void> {
+		return new Promise(async (resolve, reject) => {
+			const value = await callbackFn();
 			this.redisClient
 				.SETEX(key, expirationTime, JSON.stringify(value))
 				.then(() => resolve())
