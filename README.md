@@ -69,11 +69,10 @@ cd CengineersApp
 npm install
 ```
 
-Configure environment variables by creating a `.env` file in the root directory. Required variables include:
+Configure environment variables by creating a `.env.development` and `.env.production` file in a `/env` directory. Required variables include:
 
 ```plaintext
-DB_URI=<MongoDB_URI>
-JWT_SECRET=<Your_JWT_Secret>
+MONGO_URL=<MongoDB_UR>
 ```
 
 To start the server:
