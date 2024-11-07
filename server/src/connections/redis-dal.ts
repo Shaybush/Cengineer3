@@ -13,66 +13,67 @@ interface IRedisSetValueProps<T> {
 	expirationTime: number;
 }
 
-export class RedisDAL {
+class RedisDAL {
 	public redisClient: RedisClientType;
 	// connect to redis
 	constructor() {
-		if (!this.redisClient) {
-			try {
-				this.redisClient = createClient({ url: REDIS_URL });
-				this.redisClient.connect().then(() => console.log('connect to Redis'));
-			} catch (error: any) {
-				// TODO - replace once AppError ready
-				throw new Error('error here');
-			}
+		try {
+			// Connect to REDIS_URL from env if exist or to local redis if doesn't
+			this.redisClient = createClient({ url: REDIS_URL || undefined });
+			this.redisClient.connect().then(() => console.log('connect to Redis'));
+		} catch (error: any) {
+			// TODO - replace once AppError ready
+			throw new Error('error here');
 		}
 	}
 
-	getSetValue<T>({ key, callbackFn, expirationTime }: IRedisCacheProps<T>): Promise<void | T> {
-		return new Promise((resolve, reject) => {
-			this.redisClient
-				.GET(key)
-				.then(async (redisData: string) => {
-					if (redisData && redisData !== null) return resolve(JSON.parse(redisData));
-					const value = await callbackFn();
-					this.redisClient.SETEX(key, expirationTime, JSON.stringify(value));
-					resolve(value);
-				})
-				.catch((error: { message: string }) => reject(new Error(`error getting redis data: ${error.message}`))); // TODO - replace once AppError ready
-		});
+	async getSetValue<T>({ key, callbackFn, expirationTime }: IRedisCacheProps<T>): Promise<T> {
+		try {
+			const redisData = await this.redisClient.GET(key);
+			if (redisData) return JSON.parse(redisData) as T;
+
+			const newValue = await callbackFn();
+			this.redisClient.SETEX(key, expirationTime, JSON.stringify(newValue));
+			return newValue;
+		} catch (error) {
+			throw new Error(`error getting redis data: ${error.message}`);
+		}
 	}
 
-	async getValueByKey(key: string): Promise<Error | string> {
-		return new Promise((resolve, reject) => {
-			this.redisClient
-				.GET(key)
-				.then((value) => resolve(value))
-				.catch((error: { message: string }) => reject(new Error(`error getting redis data: ${error.message}`))); // TODO - replace once AppError ready
-		});
+	async getValueByKey<T>(key: string): Promise<T | null> {
+		try {
+			const redisData = await this.redisClient.GET(key);
+			return redisData ? (JSON.parse(redisData) as T) : null;
+		} catch (error) {
+			throw new Error(`error getting redis data: ${error.message}`);
+		}
 	}
 
 	async setKeyWithCallback<T>({ key, callbackFn, expirationTime }: IRedisCacheProps<T>): Promise<void> {
-		return new Promise(async (resolve, reject) => {
+		try {
 			const value = await callbackFn();
-			this.redisClient
-				.SETEX(key, expirationTime, JSON.stringify(value))
-				.then(() => resolve())
-				.catch((error: { message: string }) =>
-					// TODO - replace once AppError ready
-					reject(new Error(`error set key with new data: ${error.message}`))
-				);
-		});
+			await this.redisClient.SETEX(key, expirationTime, JSON.stringify(value));
+		} catch (error) {
+			throw new Error(`error set key with new data: ${error.message}`);
+		}
 	}
 
 	async setKeyWithValue<T>({ key, value, expirationTime }: IRedisSetValueProps<T>): Promise<void> {
-		return new Promise((resolve, reject) => {
-			this.redisClient
-				.SETEX(key, expirationTime, JSON.stringify(value))
-				.then(() => resolve())
-				.catch((error: { message: string }) =>
-					// TODO - replace once AppError ready
-					reject(new Error(`error set key with new data: ${error.message}`))
-				);
-		});
+		try {
+			await this.redisClient.SETEX(key, expirationTime, JSON.stringify(value));
+		} catch (error) {
+			throw new Error('error set key with new data');
+		}
+	}
+
+	async deleteKey(key: string): Promise<void> {
+		try {
+			await this.redisClient.DEL(key);
+		} catch (error) {
+			throw new Error('error delete key');
+		}
 	}
 }
+
+const RedisCache = new RedisDAL();
+export default RedisCache;
