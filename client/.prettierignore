@@ -1,4 +1,29 @@
+# dependencies
+/node_modules
+package-lock.json
 pnpm-lock.yaml
+
+# testing
+/coverage
+
+# production
+/build
+/certs
+
+# misc
+**/*/public
+**/*/dist
+**/.DS_Store
+*/.env.
+**/.git
+**/*/*.css
+**/*/*.json
+**/*/*.html
+
+
+.gitignore
+.idea/
+
 tsconfig.json
 package.json
 /dist
