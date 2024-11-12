@@ -21,66 +21,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 	next();
 });
 
-// TODO - remove after review
-app.get('/redis', async (req: Request, res: Response, next: NextFunction) => {
-	try {
-		// testing redis with jsonplaceholder data using TS
-		interface IJsonplaceholderModel {
-			albumId: number;
-			id: number;
-			title: string;
-			url: string;
-			thumbnailUrl: string;
-		}
-
-		await RedisCache.setKeyWithValue({ key: 'example', value: 'test', expirationTime: 60 });
-		RedisCache.getValueByKey('example').then((value) => {
-			console.log('getValueByKey(example): ', value);
-		});
-
-		await RedisCache.setKeyWithCallback({
-			key: 'data',
-			callbackFn: async () => {
-				const { data } = await axios.get<IJsonplaceholderModel[]>('https://jsonplaceholder.typicode.com/photos', {
-					params: { albumId: 1 },
-				});
-				return data;
-			},
-			expirationTime: 60,
-		});
-		RedisCache.getValueByKey<IJsonplaceholderModel[]>('data').then((value) => {
-			console.log('getValueByKey(data): ', value[0].title);
-		});
-
-		await RedisCache.getSetValue({
-			key: `data?albumId=${10}`,
-			callbackFn: async () => {
-				const { data } = await axios.get<IJsonplaceholderModel[]>('https://jsonplaceholder.typicode.com/photos', {
-					params: { albumId: 10 },
-				});
-				return data;
-			},
-			expirationTime: 60 * 2,
-		});
-		console.log('Before delete');
-		await RedisCache.getValueByKey<IJsonplaceholderModel[]>(`data?albumId=${10}`).then((value) => {
-			console.log('data?albumId: ', value);
-		});
-
-		console.log('Delete data?albumId=10');
-		await RedisCache.deleteKey(`data?albumId=${10}`);
-
-		console.log('After delete');
-		await RedisCache.getValueByKey<IJsonplaceholderModel[]>(`data?albumId=${10}`).then((value) => {
-			console.log('data?albumId=${10}: ', value);
-		});
-
-		res.send('redis');
-	} catch (error) {
-		next(error);
-	}
-});
-
 app.get(AppConfig.apiUrl.health, async (req, res) => {
 	res.send('OK');
 });

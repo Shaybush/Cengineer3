@@ -14,12 +14,11 @@ interface IRedisSetValueProps<T> {
 }
 
 class RedisDAL {
-	public redisClient: RedisClientType;
+	private redisClient: RedisClientType;
 	// connect to redis
 	constructor() {
 		try {
-			// Connect to REDIS_URL from env if exist or to local redis if doesn't
-			this.redisClient = createClient({ url: REDIS_URL || undefined });
+			this.redisClient = createClient({ url: REDIS_URL });
 			this.redisClient.connect().then(() => console.log('connect to Redis'));
 		} catch (error: any) {
 			// TODO - replace once AppError ready
