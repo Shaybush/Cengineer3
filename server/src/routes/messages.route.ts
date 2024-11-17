@@ -1,17 +1,17 @@
 import { Router } from 'express';
 
-const router = Router();
+const messagesRoute = Router();
 
-router.post('/', (req, res) => {
-	// Logic to send a new message
+messagesRoute.post('/', (req, res) => {
+	res.send('Logic to send a new message');
 });
 
-router.get('/:roomId', (req, res) => {
-	// Logic to get messages for a room
+messagesRoute.get('/:roomId', (req, res) => {
+	res.send('Logic to get all messages for a room');
 });
 
-router.delete('/:id', (req, res) => {
-	// Logic to delete a message
+messagesRoute.delete('/:id', (req, res) => {
+	res.send('Logic to delete a message');
 });
 
-export default router;
+export default messagesRoute;

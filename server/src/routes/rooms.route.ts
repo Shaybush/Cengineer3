@@ -1,25 +1,25 @@
 import { Router } from 'express';
 
-const router = Router();
+const roomsRoute = Router();
 
-router.post('/', (req, res) => {
-	// Logic to create a new room
+roomsRoute.post('/', (req, res) => {
+	res.send('Logic to create a new room');
 });
 
-router.get('/', (req, res) => {
-	// Logic to get all rooms for the user
+roomsRoute.get('/', (req, res) => {
+	res.send('Logic to get all rooms for the user');
 });
 
-router.get('/:id', (req, res) => {
-	// Logic to get details of a room
+roomsRoute.get('/:id', (req, res) => {
+	res.send('Logic to get details of a room');
 });
 
-router.put('/:id', (req, res) => {
-	// Logic to update room details
+roomsRoute.put('/:id', (req, res) => {
+	res.send('Logic to update room details');
 });
 
-router.delete('/:id', (req, res) => {
-	// Logic to delete a room
+roomsRoute.delete('/:id', (req, res) => {
+	res.send('Logic to delete a room');
 });
 
-export default router;
+export default roomsRoute;

@@ -1,27 +1,25 @@
 import { Router } from 'express';
 
-const router = Router();
+const usersRoute = Router();
 
-router.post('/send-code', (req, res) => {
-	// Generate a 6-digit code and store it in Redis
-	// Send the code to the user's email
+usersRoute.post('/send-code', (req, res) => {
+	res.send('Generate a 6-digit code and store it in Redis');
 });
 
-router.post('/verify-code', (req, res) => {
-	// Check if code in redis
-	// If code is valid, generate and send token
+usersRoute.post('/verify-code', (req, res) => {
+	res.send('Check if code in redis');
 });
 
-router.put('/:id', (req, res) => {
-	// Logic to update user profile
+usersRoute.put('/:id', (req, res) => {
+	res.send('Logic to update user profile');
 });
 
-router.get('/:id', (req, res) => {
-	// Logic to get user info
+usersRoute.get('/:id', (req, res) => {
+	res.send('Logic to get user info');
 });
 
-router.delete('/:id', (req, res) => {
-	// Logic to delete a user
+usersRoute.delete('/:id', (req, res) => {
+	res.send('Logic to delete a user');
 });
 
-export default router;
+export default usersRoute;

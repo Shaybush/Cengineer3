@@ -1,12 +1,12 @@
 import { Router } from 'express';
-import userRoutes from './users.route';
-import roomRoutes from './rooms.route';
-import messageRoutes from './messages.route';
+import usersRoute from './users.route';
+import roomsRoute from './rooms.route';
+import messagesRoute from './messages.route';
 
-const router = Router();
+const indexRoute = Router();
 
-router.use('/users', userRoutes);
-router.use('/rooms', roomRoutes);
-router.use('/messages', messageRoutes);
+indexRoute.use('/users', usersRoute);
+indexRoute.use('/rooms', roomsRoute);
+indexRoute.use('/messages', messagesRoute);
 
-export default router;
+export default indexRoute;
