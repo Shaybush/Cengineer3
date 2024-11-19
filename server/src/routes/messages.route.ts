@@ -7,7 +7,7 @@ messagesRoute.get('/:roomId', (req, res) => {
 });
 
 messagesRoute.get('/unread/count/:userId', (req, res) => {
-	res.send('Logic to get all unread messages for a user in room');
+	res.send('Logic to get count of unread messages for a user in room');
 });
 
 export default messagesRoute;

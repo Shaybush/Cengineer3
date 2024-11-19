@@ -6,8 +6,8 @@ roomsRoute.get('/:userId', (req, res) => {
 	res.send('Logic to get all rooms for the user');
 });
 
-roomsRoute.delete('/:id', (req, res) => {
-	res.send('Logic to delete a room');
+roomsRoute.get('/:roomId/users', (req, res) => {
+	res.send('Logic to get all users in a room');
 });
 
 export default roomsRoute;
