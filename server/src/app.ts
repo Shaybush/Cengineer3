@@ -6,6 +6,9 @@ import cors from 'cors';
 import { AppConfig } from './config/app.config';
 import { AppError } from './utils/app-error.util';
 import './db/mongo-connect';
+import RedisCache from './connections/redis-dal';
+import axios from 'axios';
+import indexRoute from './routes/index.route';
 
 const app = express();
 const server = createServer(app);
@@ -19,7 +22,9 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 	next();
 });
 
-app.get(AppConfig.apiUrl.health, (req, res) => {
+app.use(indexRoute);
+
+app.get(AppConfig.apiUrl.health, async (req, res) => {
 	res.send('OK');
 });
 
