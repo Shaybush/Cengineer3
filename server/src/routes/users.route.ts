@@ -1,10 +1,9 @@
 import { Router } from 'express';
+import { sendCode } from '../services/user.service';
 
 const usersRoute = Router();
 
-usersRoute.post('/send-code', (req, res) => {
-	res.send('Generate a 6-digit code and store it in Redis');
-});
+usersRoute.post('/send-code', sendCode);
 
 usersRoute.post('/verify-code', (req, res) => {
 	res.send('Check if code in redis');

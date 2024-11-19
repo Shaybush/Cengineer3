@@ -1,16 +1,15 @@
-import nodemailer , { Transporter } from "nodemailer"
-import {EMAIL_PASS , EMAIL_USER} from '../utils/environment-variables'
-
+import nodemailer, { Transporter } from 'nodemailer';
+import { EMAIL_PASS, EMAIL_USER } from '../utils/environment-variables';
+console.log(EMAIL_USER, EMAIL_PASS);
 const transporter: Transporter = nodemailer.createTransport({
-    host: 'smtp.imitate.email', 
-    port: 587,
-    secure: false, 
-    auth: {
-        user: EMAIL_USER,
-        pass: EMAIL_PASS
-    },
-    //Allows connections with invalid, self-signed, or unverified certificates
-    tls: { rejectUnauthorized: false }
+	service: 'gmail',
+	auth: {
+		user: EMAIL_USER,
+		pass: EMAIL_PASS,
+	},
+	tls: {
+		rejectUnauthorized: false,
+	},
 });
 
-export default transporter
+export default transporter;
