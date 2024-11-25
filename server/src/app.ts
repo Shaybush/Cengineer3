@@ -8,6 +8,7 @@ import { AppError } from './utils/app-error.util';
 import './db/mongo-connect';
 import RedisCache from './connections/redis-dal';
 import axios from 'axios';
+import indexRoute from './routes/index.route';
 
 const app = express();
 const server = createServer(app);
@@ -20,6 +21,8 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 	console.log(req.method, req.originalUrl);
 	next();
 });
+
+app.use(indexRoute);
 
 app.get(AppConfig.apiUrl.health, async (req, res) => {
 	res.send('OK');

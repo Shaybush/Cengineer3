@@ -14,4 +14,3 @@ proseWrap: preserve
 htmlWhitespaceSensitivity: css
 embeddedLanguageFormatting: off
 quoteProps: as-needed # only add quotes around object properties where required
-plugins: [prettier-plugin-tailwindcss]
