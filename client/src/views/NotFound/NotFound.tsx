@@ -1,11 +1,10 @@
+import React from 'react';
 import PageLayout from '../../components/PageLayout';
 
-const Profile = () => {
+export default function NotFound() {
 	return (
 		<PageLayout>
-			<div>Profile</div>
+			<div>NotFound</div>
 		</PageLayout>
 	);
-};
-
-export default Profile;
+}

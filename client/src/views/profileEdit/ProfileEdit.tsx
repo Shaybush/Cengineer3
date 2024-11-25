@@ -1,9 +1,11 @@
-import React from 'react'
+import PageLayout from '../../components/PageLayout';
 
 const ProfileEdit = () => {
-  return (
-    <div>ProfileEdit</div>
-  )
-}
+	return (
+		<PageLayout>
+			<div>ProfileEdit</div>
+		</PageLayout>
+	);
+};
 
-export default ProfileEdit
+export default ProfileEdit;

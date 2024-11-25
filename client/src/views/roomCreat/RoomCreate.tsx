@@ -1,9 +1,11 @@
-import React from 'react'
+import PageLayout from '../../components/PageLayout';
 
 const RoomCreate = () => {
-  return (
-    <div>RoomCreate</div>
-  )
-}
+	return (
+		<PageLayout>
+			<div>RoomCreate</div>
+		</PageLayout>
+	);
+};
 
-export default RoomCreate
+export default RoomCreate;
