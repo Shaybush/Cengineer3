@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 
-interface InputBtnProps {
+export interface InputBtnProps {
   placeholder: string;
   buttonLabel: string;
   id: string;
