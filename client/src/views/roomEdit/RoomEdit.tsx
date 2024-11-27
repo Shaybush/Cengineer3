@@ -1,9 +1,11 @@
-import React from 'react'
+import PageLayout from '../../components/PageLayout';
 
 const RoomEdit = () => {
-  return (
-    <div>RoomEdit</div>
-  )
-}
+	return (
+		<PageLayout>
+			<div>RoomEdit</div>
+		</PageLayout>
+	);
+};
 
-export default RoomEdit
+export default RoomEdit;

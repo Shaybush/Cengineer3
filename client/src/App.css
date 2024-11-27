@@ -5,7 +5,7 @@
 button {
   @apply px-5 py-2 bg-dark-blue rounded-md font-semibold text-white transition-all duration-75 ease-in-out;
   &:hover{
-    @apply bg-light-blue scale-105
+    @apply bg-light-blue
   }
 }
 
@@ -23,6 +23,5 @@ div:has(> input)  {
 
   &:has(> input:focus){
     box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.2);
-    translate: 0 -3px;
   }
 }
