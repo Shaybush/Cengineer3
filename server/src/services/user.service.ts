@@ -18,14 +18,14 @@ export const sendCode = async (req: Request, res: Response, next: NextFunction) 
 		const pathTohtml = path.join(__dirname, '..', 'assets', 'verify-code.html');
 		const html = (await readFile(pathTohtml)).replace('**XXXXXX**', code);
 
-		await sendEmail({
-			to: 'req.body.email',
+		const result = await sendEmail({
+			to: req.body.email,
 			subject: 'Verify your account',
 			text: `Your verification code is ${code}`,
 			html,
 		});
 
-		res.status(CommonResponseDict.Success.code).json(CommonResponseDict.Success);
+		res.status(CommonResponseDict.Success.code).json(result);
 	} catch (error) {
 		next(error);
 	}

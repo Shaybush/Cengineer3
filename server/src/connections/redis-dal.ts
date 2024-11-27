@@ -17,13 +17,11 @@ class RedisDAL {
 	private redisClient: RedisClientType;
 	// connect to redis
 	constructor() {
-		try {
-			this.redisClient = createClient({ url: REDIS_URL });
-			this.redisClient.connect().then(() => console.log('connect to Redis'));
-		} catch (error: any) {
-			// TODO - replace once AppError ready
-			throw new Error('error here');
-		}
+		this.redisClient = createClient({ url: REDIS_URL });
+
+		this.redisClient.connect().then(() => console.log('connect to Redis'));
+
+		this.redisClient.on('error', (err) => console.log('Redis Client Error', err));
 	}
 
 	async getSetValue<T>({ key, callbackFn, expirationTime }: IRedisCacheProps<T>): Promise<T> {
