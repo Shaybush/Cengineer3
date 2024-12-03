@@ -1,37 +1,83 @@
 import { ComponentType, ReactNode } from "react";
-import InputBtn from "./InputBtn";
-import { fn } from "@storybook/test";
+import { expect, userEvent, within } from "@storybook/test";
 import { Meta, StoryObj } from "@storybook/react";
+import InputBtn from "./InputBtn";
 
 const meta = {
-	title: 'components/InputBtn',
-	component: InputBtn,
-	parameters: {
+  title: 'components/InputBtn',
+  component: InputBtn,
+  parameters: {
     controls: { exclude: /^(placeholder|buttonLabel|id|onClickHandle|btnType|type|name|children)$/g },
   },
   decorators: [
     (Story: ComponentType) => (
-        <div style={{ height: '130vh' }}>
-            <Story />
-        </div>
+      <div style={{ height: '130vh' }}>
+        <Story />
+      </div>
     ),
   ],
-	// Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-	args: { onClickHandle: fn() },
+  play: async ({ canvasElement }) => {
+    const { getByRole } = within(canvasElement);
+
+    // Interact with the input
+    const input = getByRole('textbox');
+    await userEvent.type(input, 'test input', { delay: 100 }); // Simulates typing into the input
+    expect(input).toHaveValue('test input'); // Verifies the value of the input
+
+    // Testing placeholder
+    expect(input).toHaveAttribute('placeholder', "button Text");
+
+    // Interact with the button
+    const button = getByRole('button', { name: "click" });
+
+    // Mock console.log for testing
+    const originalConsoleLog = console.log;
+    let logCaptured = false;
+
+    console.log = (...args: any[]) => {
+      if (args[0] === "Button clicked!") {
+        logCaptured = true;
+      }
+      originalConsoleLog(...args);
+    };
+
+    try {
+      await userEvent.click(button); // Simulates button click
+
+      // Verify the click action by checking the captured log
+      expect(logCaptured).toBe(true); // Ensures "Button clicked!" was logged
+    } finally {
+      // Restore the original console.log
+      console.log = originalConsoleLog;
+    }
+  },
 } satisfies Meta<typeof InputBtn>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-// option 1
+// Story version
 export const Default: Story = {
   args: {
-		placeholder: "default",
-		buttonLabel: 'Button',
+    placeholder: "default",
+    buttonLabel: 'Button',
     id: 'btn',
-	},
+  },
 }
 
-// option 2
-export const ButtonWithInputImage = (): ReactNode => <InputBtn placeholder="button Text" buttonLabel="click" id="btn" onClickHandle={() => console.log("Clicked!!!")}/>
+// Component Story version
+export const ButtonWithInputImage = (): ReactNode => {
+  const handleClick = () => {
+    console.log("Button clicked!");
+  };
+
+  return (
+    <InputBtn
+      placeholder="button Text"
+      buttonLabel="click"
+      id="btn"
+      onClickHandle={handleClick}
+    />
+  );
+};

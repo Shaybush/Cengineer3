@@ -1,18 +1,17 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
-	testDir: './src', // Run tests in the `src` directory
-	fullyParallel: true,
-	retries: 0,
-	workers: 1,
-	use: {
-		baseURL: 'http://localhost:6006', // Storybook dev server
-		trace: 'on-first-retry',
+	testDir: './', // Set the root directory
+	testMatch: '**/*.test.{ts,tsx}', // Match test files across the project
+	webServer: {
+		command: 'pnpm storybook', // Command to start Storybook
+		url: 'http://localhost:6006', // Storybook URL
+		timeout: 120 * 1000, // Timeout for the server to start
+		reuseExistingServer: !process.env.CI, // Reuse server if running
 	},
-	projects: [
-		{
-			name: 'Desktop Chrome',
-			use: { ...devices['Desktop Chrome'] },
-		},
-	],
+	use: {
+		baseURL: 'http://localhost:6006', // Base URL for tests
+		headless: true, // Run tests in headless mode
+		viewport: { width: 1280, height: 720 }, // Default viewport size
+	},
 });
