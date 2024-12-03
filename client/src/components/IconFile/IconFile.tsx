@@ -1,6 +1,6 @@
 import { FC, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { isStringEmptyUtil } from '../../utils/services/string.service';
+import { isStringEmptyUtil } from '../../core/types/services/string.service';
 import { iconConfig } from '../../core/config/icon.config';
 import LoaderSpinner from '../LoaderSpinner';
 
@@ -14,10 +14,11 @@ interface IIconFileModel {
   link?: string;
 }
 
-const IconFile: FC<IIconFileModel> = ({ styleClass = '', width = 16, height = 16, iconSrc, link }) => {
+const IconFile: FC<IIconFileModel> = ({ iconSrc, link, styleClass = '', width = 16, height = 16 }) => {
   const [icon, setIcon] = useState<string>(UNDEFINED_SRC);
 
   useEffect(() => {
+		console.log(iconConfig[iconSrc])
     if (iconConfig[iconSrc]) {
       setIcon(iconConfig[iconSrc]);
     } else {
