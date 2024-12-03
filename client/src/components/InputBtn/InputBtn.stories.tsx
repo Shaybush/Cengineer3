@@ -1,5 +1,5 @@
 import { ComponentType, ReactNode } from "react";
-import InputBtn from "../inputBtn";
+import InputBtn from "./InputBtn";
 import { fn } from "@storybook/test";
 import { Meta, StoryObj } from "@storybook/react";
 

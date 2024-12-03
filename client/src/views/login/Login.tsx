@@ -1,4 +1,4 @@
-import InputBtn from "../../components/input/inputBtn"
+import InputBtn from "../../components/inputBtn/InputBtn"
 
 const LoginView = () => {
   return (
