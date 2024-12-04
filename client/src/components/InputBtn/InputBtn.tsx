@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 import IconFile from '../IconFile/IconFile';
 
 export interface InputBtnProps {
@@ -10,11 +10,11 @@ export interface InputBtnProps {
   type?: HTMLInputElement['type'];
   name?: string;
   children?: ReactNode;
+  inputIcon?: string;
+  buttonIcon?: string;
 }
 
 const InputBtn: FC<InputBtnProps> & {
-  InputIcon: FC<{ children: ReactNode }>;
-  ButtonIcon: FC<{ children: ReactNode }>;
 } = ({
   placeholder,
   buttonLabel,
@@ -23,31 +23,17 @@ const InputBtn: FC<InputBtnProps> & {
   btnType = 'button',
   type = 'text',
   name = '',
-  children,
+  inputIcon,
+  buttonIcon
 }) => {
-  let inputIcon: ReactNode = null;
-  let buttonIcon: ReactNode = null;
-
-  // extract inputIcon and buttonIcon from children
-  React.Children.forEach(children, (child) => {
-    if (React.isValidElement(child) && child.type === InputBtn.InputIcon) {
-      inputIcon = child.props.children;
-    }
-    if (React.isValidElement(child) && child.type === InputBtn.ButtonIcon) {
-      // @ts-ignore
-      buttonIcon = child.props?.children;
-    }
-  });
 
   return (
     <div>
       <div className="mt-2 flex rounded-md shadow-sm">
         <div className="relative flex grow items-stretch focus-within:z-10">
-          {/* Input Icon */}
           {inputIcon && (
             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-              <IconFile iconSrc={inputIcon} />
-              {inputIcon}
+              <IconFile iconSrc={inputIcon} styleClass='text-green-600' />
             </div>
           )}
           <input
@@ -65,17 +51,12 @@ const InputBtn: FC<InputBtnProps> & {
           type={btnType}
           className="relative -ml-16 z-10 inline-flex items-center gap-x-1.5 rounded-r-md px-3 py-2 text-sm font-semibold text-white ring-1 ring-inset"
         >
-          {/* button icon */}
-          {buttonIcon}
+          { buttonIcon && <IconFile iconSrc={buttonIcon} styleClass='text-green-600'/> }
           {buttonLabel}
         </button>
       </div>
     </div>
   );
 };
-
-// compound components
-InputBtn.InputIcon = ({ children }: { children: ReactNode }) => <>{children}</>;
-InputBtn.ButtonIcon = ({ children }: { children: ReactNode }) => <>{children}</>;
 
 export default InputBtn;

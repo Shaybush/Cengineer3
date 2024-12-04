@@ -24,7 +24,6 @@ const meta = {
     await userEvent.type(input, 'test input', { delay: 100 }); // Simulates typing into the input
     expect(input).toHaveValue('test input'); // Verifies the value of the input
 
-
     // Interact with the button
     const button = getByRole('button');
 
@@ -65,7 +64,7 @@ export const Default: Story = {
 }
 
 // Component Story version
-export const ButtonWithInputImage = (): ReactNode => {
+export const ButtonWithInputIcon = (): ReactNode => {
   const handleClick = () => {
     console.log("Button clicked!");
   };
@@ -76,6 +75,23 @@ export const ButtonWithInputImage = (): ReactNode => {
       buttonLabel="click"
       id="btn"
       onClickHandle={handleClick}
+      inputIcon="arrow-left"
+    />
+  );
+};
+
+export const ButtonWithIcon = (): ReactNode => {
+  const handleClick = () => {
+    console.log("Button clicked!");
+  };
+
+  return (
+    <InputBtn
+      placeholder="button Text"
+      buttonLabel="click"
+      id="btn"
+      onClickHandle={handleClick}
+      buttonIcon="at"
     />
   );
 };
