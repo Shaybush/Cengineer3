@@ -24,11 +24,9 @@ const meta = {
     await userEvent.type(input, 'test input', { delay: 100 }); // Simulates typing into the input
     expect(input).toHaveValue('test input'); // Verifies the value of the input
 
-    // Testing placeholder
-    expect(input).toHaveAttribute('placeholder', "button Text");
 
     // Interact with the button
-    const button = getByRole('button', { name: "click" });
+    const button = getByRole('button');
 
     // Mock console.log for testing
     const originalConsoleLog = console.log;

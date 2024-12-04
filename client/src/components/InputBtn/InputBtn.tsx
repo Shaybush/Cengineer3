@@ -1,4 +1,5 @@
 import React, { FC, ReactNode } from 'react';
+import IconFile from '../IconFile/IconFile';
 
 export interface InputBtnProps {
   placeholder: string;
@@ -45,6 +46,7 @@ const InputBtn: FC<InputBtnProps> & {
           {/* Input Icon */}
           {inputIcon && (
             <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+              <IconFile iconSrc={inputIcon} />
               {inputIcon}
             </div>
           )}
