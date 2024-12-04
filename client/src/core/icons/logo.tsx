@@ -1,7 +1,4 @@
-import React from 'react';
-import { IconProps } from '../types/icon.type';
- 
-const LogoSolidIcon: React.FC<IconProps> = ({ color = 'none', width = '207px', height = '38px', styleClass = '' }) => {
+ const LogoSolidIcon = ({ color = 'none', width = '207px', height = '38px', styleClass = '' }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -10,13 +10,7 @@
 // - eslint-import-resolver-typescript
 module.exports = {
   root: true,
-  extends: [
-    'plugin:@typescript-eslint/recommended',
-    'eslint:recommended', // comes from the eslint-plugin-react.
-    'plugin:react/recommended', // comes from the eslint-plugin-react.
-    'plugin:react/jsx-runtime', // comes from eslint-plugin-react. From the documentation: If you are using the new JSX transform from React 17, extend react/jsx-runtime in your eslint config (add "plugin:react/jsx-runtime" to "extends") to disable the relevant rules.
-    'plugin:prettier/recommended', // this is the same as using prettier, only it adds a few rules.
-  ],
+  extends: ['plugin:@typescript-eslint/recommended', 'eslint:recommended', 'plugin:react/recommended', 'plugin:react/jsx-runtime', 'plugin:prettier/recommended', 'plugin:storybook/recommended'],
   plugins: [
     'prettier', // <-- if you had used plugin:prettier/recommended this would have been enabled by default.
     'react',

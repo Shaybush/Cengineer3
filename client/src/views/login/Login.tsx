@@ -1,5 +1,6 @@
 import LoginForm from './LoginForm';
 import LogoSolidIcon from '../../core/icons/logo';
+
 const LoginView = () => {
 	return (
 		<div className='flex flex-col sm:flex-row h-dvh w-full'>
