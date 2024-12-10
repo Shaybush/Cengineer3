@@ -3,5 +3,8 @@ export class AppConfig {
 
 	static readonly apiUrl = {
 		health: '/health',
+		users: '/users',
+		rooms: '/rooms',
+		messages: '/messages',
 	};
 }
