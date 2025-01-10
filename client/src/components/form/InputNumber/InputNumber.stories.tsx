@@ -11,10 +11,10 @@ const meta = {
 	parameters: {
 		controls: { exclude: /^(label|defaultValue|validation|errors|register)$/g },
 	},
-	tags: ['new'],
+	tags: ['autodocs', 'new'],
 	decorators: [
 		(Story: ComponentType) => (
-			<div style={{ height: '100vh' }}>
+			<div style={{ minHeight: '20vh' }}>
 				<Story />
 			</div>
 		),

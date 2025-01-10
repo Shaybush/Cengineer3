@@ -6,6 +6,8 @@ const config: StorybookConfig = {
 		'@storybook/addon-onboarding',
 		'@storybook/addon-essentials',
 		'@chromatic-com/storybook',
+		'storybook-addon-tags',
+		'storybook-addon-tag-badges',
 		'@storybook/addon-interactions',
 	],
 	framework: {
