@@ -2,7 +2,7 @@ import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
 	testDir: './', // Set the root directory
-	testMatch: '**/*.test.{ts,tsx}', // Match test files across the project
+	testMatch: '**/*.spec.{ts,tsx}', // Match test files across the project
 	webServer: {
 		command: 'pnpm storybook', // Command to start Storybook
 		url: 'http://localhost:6006', // Storybook URL
