@@ -11,7 +11,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test:e2e": "playwright test",
-    "test": "jest --watch"
+    "test": "jest --watchAll",
+    "coverage": "jest --coverage"
   },
   "dependencies": {
     "axios": "^1.7.7",

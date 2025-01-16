@@ -15,7 +15,7 @@ export default function Dashboard() {
 	const [newTodo, setNewTodo] = useState('');
 
 	useEffect(() => {
-		axios<ITodoModel[]>('https://jsonplaceholder.typicode.com/todos?_limit=5', { method: 'GET' })?.then((todosData) =>
+		axios<ITodoModel[]>('https://jsonplaceholder.typicode.com/todos?_limit=5', { method: 'GET' }).then((todosData) =>
 			setTodos(todosData.data)
 		);
 	}, []);
