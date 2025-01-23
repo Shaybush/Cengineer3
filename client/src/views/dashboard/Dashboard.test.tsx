@@ -1,4 +1,3 @@
-import '@testing-library/jest-dom';
 import axios from 'axios';
 import { todosMockData } from './mock/todos-mock.data';
 import { render, screen, act, fireEvent } from '@testing-library/react';
