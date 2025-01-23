@@ -5,9 +5,6 @@ import path from 'path';
 import cors from 'cors';
 import { AppConfig } from './config/app.config';
 import { AppError } from './utils/app-error.util';
-import './db/mongo-connect';
-import RedisCache from './connections/redis-dal';
-import axios from 'axios';
 import indexRoute from './routes/index.route';
 
 const app = express();
