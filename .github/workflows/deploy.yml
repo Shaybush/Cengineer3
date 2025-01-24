@@ -8,7 +8,7 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+# Sets permissions of the GITHUB_TOKEN to allow deployment to gitHub Pages
 permissions:
   contents: read
   pages: write
@@ -59,7 +59,13 @@ jobs:
           echo "Building with NODE_ENV=$NODE_ENV"
           pnpm run build
 
-      # Step 6: Deploy to GitHub Pages
+      # Step 6: Delete existing gh-pages branch
+      - name: Delete existing gh-pages branch
+        run: |
+          echo "Deleting gh-pages branch from remote if it exists..."
+          git push origin --delete gh-pages || echo "gh-pages branch does not exist. Skipping deletion."
+
+      # Step 7: Deploy to Github Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
