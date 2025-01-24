@@ -35,10 +35,14 @@ jobs:
         with:
           node-version: "latest"
 
-      # Step 2.1: Install pnpm global
-      - name: Install dependencies in client folder
+      # Step 2.1: Install pnpm globally
+      - name: Install pnpm globally
         working-directory: ./client
         run: npm install -g pnpm
+
+      # Step 2.2: Echo NODE_ENV
+      - name: Echo NODE_ENV
+        run: echo "NODE_ENV is set to $NODE_ENV"
 
       # Step 3: Navigate to client folder and install dependencies
       - name: Install dependencies in client folder
@@ -53,7 +57,9 @@ jobs:
       # Step 5: Build project in client folder
       - name: Build project in client folder
         working-directory: ./client
-        run: pnpm run build
+        run: |
+          echo "Building with NODE_ENV=$NODE_ENV"
+          pnpm run build
 
       # Step 6: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
