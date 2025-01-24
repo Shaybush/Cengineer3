@@ -12,6 +12,7 @@
     "build-storybook": "storybook build",
     "test:e2e": "playwright test",
     "test": "jest --watchAll",
+    "test:ci": "jest",
     "coverage": "jest --coverage"
   },
   "dependencies": {
