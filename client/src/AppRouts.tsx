@@ -18,7 +18,6 @@ const AppRoutes: React.FC = () => {
 					<Route path='login' element={<Login />} />
 					<Route path='/' element={<Layout />}>
 						<Route index element={<Dashboard />} />
-						{/* <Route path='/:roomId' element={<div className='bg-light-gray'>Inside room</div>}></Route> */}
 						<Route path='new-room' element={<RoomCreate />} />
 						<Route path='edit-room' element={<RoomEdit />} />
 						<Route path='profile' element={<Profile />} />
