@@ -13,6 +13,8 @@ const Layout = lazy(() => import('./components/Layout'));
 const AppRoutes: React.FC = () => {
 	return (
 		<Router basename={process.env.NODE_ENV === 'production' ? '/Cengineer3/' : '/'}>
+			<pre>{process.env.NODE_ENV}</pre>
+			<pre>{import.meta.env.NODE_ENV}</pre>
 			<Suspense fallback={<div>Loading...</div>}>
 				<Routes>
 					<Route path='login' element={<Login />} />
