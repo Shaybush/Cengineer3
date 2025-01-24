@@ -1,4 +1,4 @@
-name: Deploy to gh-pages
+name: Deploy Client to gh-pages
 
 on:
   # Runs on pushes targeting the default branch
@@ -22,29 +22,38 @@ concurrency:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest # Specifies that the job runs on the latest Ubuntu environment provided by GitHub Actions.
+    runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout repository
       - name: Checkout repository
-        uses: actions/checkout@v4 # Official GitHub Action to clone the repository.
+        uses: actions/checkout@v4
 
+      # Step 2: Set up Node.js
       - name: Set up Node.js
-        uses: actions/setup-node@v4 # Official GitHub Action to install and configure Node.js.
+        uses: actions/setup-node@v4
         with:
           node-version: "latest"
 
-      - name: Install dependencies
+      # Step 3: Navigate to client folder and install dependencies
+      - name: Install dependencies in client folder
+        working-directory: ./client
         run: pnpm install
 
-      - name: Run Unit Tests
+      # Step 4: Run Unit Tests (if applicable) in client folder
+      - name: Run Unit Tests in client folder
+        working-directory: ./client
         run: pnpm run test:ci
 
-      - name: Build project
+      # Step 5: Build project in client folder
+      - name: Build project in client folder
+        working-directory: ./client
         run: pnpm run build:gh-pages
 
+      # Step 6: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.ACTIONS_PAT }}
-          publish_dir: ./docs/browser
+          publish_dir: ./client/docs/browser
           publish_branch: gh-pages
