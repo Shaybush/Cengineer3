@@ -8,6 +8,7 @@ export default defineConfig({
 		port: 5173,
 		open: true,
 	},
+	base: process.env.NODE_ENV === 'production' ? '/Cengineer3/' : '/',
 	build: {
 		sourcemap: true, // Enable source maps
 	},
