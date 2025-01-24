@@ -59,7 +59,7 @@ jobs:
           echo "Building with NODE_ENV=$NODE_ENV"
           pnpm run build
 
-      # Step 6: Deploy to GitHub Pages
+      # Step 6: Deploy to Github Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
