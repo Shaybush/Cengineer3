@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1737054998337" clover="3.2.0">
+  <project timestamp="1737054998337" name="All files">
+    <metrics statements="21" coveredstatements="21" conditionals="5" coveredconditionals="5" methods="9" coveredmethods="9" elements="35" coveredelements="35" complexity="0" loc="21" ncloc="21" packages="2" files="2" classes="2"/>
+    <package name="dashboard">
+      <metrics statements="20" coveredstatements="20" conditionals="5" coveredconditionals="5" methods="9" coveredmethods="9"/>
+      <file name="Dashboard.tsx" path="/Users/shaybushary/Desktop/projects/MERN/cengineer/cengineer3-main/client/src/views/dashboard/Dashboard.tsx">
+        <metrics statements="20" coveredstatements="20" conditionals="5" coveredconditionals="5" methods="9" coveredmethods="9"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="9" type="stmt"/>
+        <line num="15" count="9" type="stmt"/>
+        <line num="17" count="9" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="23" count="9" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="25" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="37" count="9" type="stmt"/>
+        <line num="38" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="41" count="9" type="stmt"/>
+        <line num="50" count="1" type="stmt"/>
+        <line num="58" count="13" type="stmt"/>
+        <line num="59" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="dashboard.mock">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="todos-mock.data.ts" path="/Users/shaybushary/Desktop/projects/MERN/cengineer/cengineer3-main/client/src/views/dashboard/mock/todos-mock.data.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="1" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
