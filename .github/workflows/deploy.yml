@@ -63,7 +63,7 @@ jobs:
       - name: Delete existing gh-pages branch
         run: |
           echo "Deleting gh-pages branch from remote if it exists..."
-          git push origin --delete gh-pages || echo "gh-pages branch does not exist. Skipping deletion."
+          git push https://x-access-token:${{ secrets.ACTIONS_PAT }} --delete origin gh-pages || echo "gh-pages branch does not exist. Skipping deletion."
 
       # Step 8: Deploy to Github Pages
       - name: Deploy to GitHub Pages
