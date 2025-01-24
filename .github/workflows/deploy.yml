@@ -21,7 +21,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  deploy-client:
     runs-on: ubuntu-latest
 
     steps:
@@ -35,22 +35,22 @@ jobs:
         with:
           node-version: "latest"
 
-      # Step 2.1: Install pnpm globally
+      # Step 3: Install pnpm globally
       - name: Install pnpm globally
         working-directory: ./client
         run: npm install -g pnpm
 
-      # Step 3: Navigate to client folder and install dependencies
+      # Step 4: Navigate to client folder and install dependencies
       - name: Install dependencies in client folder
         working-directory: ./client
         run: pnpm install
 
-      # Step 4: Run Unit Tests (if applicable) in client folder
+      # Step 5: Run Unit Tests (if applicable) in client folder
       - name: Run Unit Tests in client folder
         working-directory: ./client
         run: pnpm run test:ci
 
-      # Step 5: Build project in client folder
+      # Step 6: Build project in client folder
       - name: Build project in client folder
         working-directory: ./client
         env:
@@ -59,13 +59,13 @@ jobs:
           echo "Building with NODE_ENV=$NODE_ENV"
           pnpm run build
 
-      # Step 6: Delete existing gh-pages branch
+      # Step 7: Delete existing gh-pages branch
       - name: Delete existing gh-pages branch
         run: |
           echo "Deleting gh-pages branch from remote if it exists..."
-          git push origin --delete gh-pages || echo "gh-pages branch does not exist. Skipping deletion."
+          git push https://x-access-token:${{ secrets.ACTIONS_PAT }} --delete origin gh-pages || echo "gh-pages branch does not exist. Skipping deletion."
 
-      # Step 7: Deploy to Github Pages
+      # Step 8: Deploy to Github Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:

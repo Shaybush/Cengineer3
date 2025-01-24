@@ -11,7 +11,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test:e2e": "playwright test",
-    "test": "jest --watchAll",
+    "test": "jest --watchAll", 
     "test:ci": "jest",
     "coverage": "jest --coverage"
   },
