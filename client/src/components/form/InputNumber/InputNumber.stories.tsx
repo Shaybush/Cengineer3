@@ -74,7 +74,7 @@ export const FormWithInputNumber = (): ReactNode => {
 		},
 	};
 
-	const handleSubmit1 = (dataBody: any) => {
+	const handleSubmit1 = () => {
 		setSuccessMsg('Submitted successfully !');
 		setTimeout(() => {
 			setSuccessMsg('');
@@ -82,7 +82,7 @@ export const FormWithInputNumber = (): ReactNode => {
 	};
 
 	return (
-		<form className='p-4 bg-blue-300' onSubmit={handleSubmit((dataBody) => handleSubmit1(dataBody))}>
+		<form className='p-4 bg-blue-300' onSubmit={handleSubmit(() => handleSubmit1())}>
 			<InputNumber
 				label='Number:'
 				formRegisterName='streetNumber'

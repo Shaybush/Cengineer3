@@ -53,12 +53,12 @@ jobs:
       # Step 5: Build project in client folder
       - name: Build project in client folder
         working-directory: ./client
-        run: pnpm run build:gh-pages
+        run: pnpm run build
 
       # Step 6: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.ACTIONS_PAT }}
-          publish_dir: ./client/docs/browser
+          publish_dir: ./client/dist
           publish_branch: gh-pages
