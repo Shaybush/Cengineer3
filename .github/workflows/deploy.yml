@@ -35,20 +35,11 @@ jobs:
         with:
           node-version: "latest"
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 23e7822474d66789b962b11c19407de000833619
       # Step 2.1: Install pnpm global
       - name: Install dependencies in client folder
         working-directory: ./client
         run: npm install -g pnpm
 
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 89e3ccf4e70d821fafea6f76ad2e289522b4df5b
->>>>>>> 23e7822474d66789b962b11c19407de000833619
       # Step 3: Navigate to client folder and install dependencies
       - name: Install dependencies in client folder
         working-directory: ./client
