@@ -18,7 +18,7 @@ const SideBar: FC<ISideBarProps> = ({ setToggle, toggle }: ISideBarProps) => {
 			</button>
 			<div className={`h-full overflow-hidden text-nowrap ${!toggle ? 'text-black' : 'sm:text-transparent'} `}>
 				<h1 className='h-16 bg-light-blue'>side bar</h1>
-				<Link to={'moses'}>moses</Link>
+				<Link to={'login'}>Login</Link>
 			</div>
 		</>
 	);
